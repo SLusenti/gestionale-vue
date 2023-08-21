@@ -33,7 +33,7 @@
             />
           </div>
         </div>
-        <ul class="navbar-nav justify-content-end">
+        <!-- <ul class="navbar-nav justify-content-end">
           <li class="nav-item d-flex align-items-center">
             <router-link
               :to="{ name: 'Signin' }"
@@ -192,7 +192,7 @@
               </li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </nav>

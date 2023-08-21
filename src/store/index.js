@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    user:{token: ""},
     hideConfigButton: false,
     isPinned: true,
     showConfig: false,
@@ -16,7 +17,8 @@ export default createStore({
     showNavbar: true,
     showFooter: true,
     showMain: true,
-    layout: "default"
+    layout: "default",
+    entries: {}
   },
   mutations: {
     toggleConfigurator(state) {

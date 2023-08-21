@@ -1,18 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Tables from "../views/Tables.vue";
-import Billing from "../views/Billing.vue";
-import VirtualReality from "../views/VirtualReality.vue";
-import RTL from "../views/Rtl.vue";
 import Profile from "../views/Profile.vue";
-import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
+import store from "../store/index"
+import Entry from "../views/Entry.vue"
 
 const routes = [
   {
     path: "/",
     name: "/",
-    redirect: "/dashboard-default",
+    redirect: "/signin",
   },
   {
     path: "/dashboard-default",
@@ -25,21 +23,6 @@ const routes = [
     component: Tables,
   },
   {
-    path: "/billing",
-    name: "Billing",
-    component: Billing,
-  },
-  {
-    path: "/virtual-reality",
-    name: "Virtual Reality",
-    component: VirtualReality,
-  },
-  {
-    path: "/rtl-page",
-    name: "RTL",
-    component: RTL,
-  },
-  {
     path: "/profile",
     name: "Profile",
     component: Profile,
@@ -50,11 +33,10 @@ const routes = [
     component: Signin,
   },
   {
-    path: "/signup",
-    name: "Signup",
-    component: Signup,
-  },
-  
+    path: "/entry/:id",
+    name: "Entry",
+    component: Entry
+  }
 ];
 
 const router = createRouter({
@@ -62,5 +44,18 @@ const router = createRouter({
   routes,
   linkActiveClass: "active",
 });
+
+router.beforeEach((to, from, next)=>{
+  //console.log(store.state.user.token)
+  if ( to.path !== '/signin' && store.state.user.token === "" ){
+    next({
+      path: '/signin',
+      replace: true
+    })
+  } else {
+    next();
+  }
+})
+
 
 export default router;

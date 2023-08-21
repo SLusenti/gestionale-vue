@@ -13,6 +13,7 @@
         :value="value"
         :placeholder="placeholder"
         :isRequired="isRequired"
+        v-on:input="updateValue($event.target.value)"
       />
       <span v-if="iconDir === 'right'" class="input-group-text">
         <i :class="getIcon(icon)"></i>
@@ -54,6 +55,9 @@ export default {
     },
     getIcon: (icon) => (icon ? icon : null),
     hasIcon: (icon) => (icon ? "input-group" : null),
+    updateValue: function (value) {
+      this.$emit('input', value);
+    }
   },
 };
 </script>
